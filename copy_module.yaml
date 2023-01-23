@@ -4,13 +4,14 @@
     become: yes
 
     tasks:
-      - name: Copy the file 
-        copy: 
+      - name: Copy the file
+        copy:
           src: /home/ansadmin/playbooks/httpd.yaml
           dest: /home/ansadmin/
 
 
-     - name: delete the file
-       file: 
-         path: /home/ansadmin/httpd.yaml
-         state: absent   
+      - name: delete the file
+        file:
+          path: /home/ansadmin/httpd.yaml
+          state: absent
+  
