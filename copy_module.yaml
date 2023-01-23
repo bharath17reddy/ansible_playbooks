@@ -10,7 +10,7 @@
           dest: /home/ansadmin/
 
 
-      - name: delete the file
-        file: 
-          path: /home/ansadmin/httpd.yaml
-          state: absent   
+  #    - name: delete the file
+  #      file: 
+   #       path: /home/ansadmin/httpd.yaml
+   #       state: absent   
