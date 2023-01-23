@@ -1,0 +1,10 @@
+---
+  - name: register module
+    hosts: all
+    become: yes
+    tasks:
+      - name: updating the packages
+        yum:
+          name: "*"
+          state: latest
+        

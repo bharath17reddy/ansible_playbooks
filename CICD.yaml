@@ -1,0 +1,50 @@
+---
+  - name: CICD Deployment script
+    hosts: all
+    become: yes
+    vars:
+      token: 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
+      username: bharath17reddy
+      repo_name: hdfc_new
+    tasks:
+      - name: cloning the project from SCM
+        git:
+          repo: https://{{token}}@github.com/{{username}}/{{repo_name}}.git
+          dest: /tmp/project/
+
+      - name: java installation
+        yum:
+          name: https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.rpm
+          state: present
+
+    #  - name: maven installation
+    #    yum:
+     #     name: maven
+     #     state: present
+
+     # - name: Build the project
+     #   shell: |
+      #    cd /tmp/project/
+     #     mvn clean package
+     #   register: maven_op
+ 
+     # - name: register op
+     #   debug:
+     #     vars: maven_op  
+
+      - name: installing tomcat
+        unarchive:
+          src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.71/bin/apache-tomcat-9.0.71.tar.gz
+          dest: /tmp/
+          remote_src: yes
+        ignore_errors: True 
+
+
+      - name: renaming tomcat folder
+        become: yes
+        shell: |
+          mv /tmp/apache-tomcat-9.0.71  /tmp/tomcat/
+          chmod -R 777 /tmp/tomcat/
+          chown -R ansadmin:ansadmin /tmp/tomcat/
+          cp /home/ansadmin/*.war /tmp/tomcat/webapps/
+          sh /tmp/tomcat/bin/startup.sh  

@@ -1,0 +1,12 @@
+---
+  - name: This is var module
+    hosts: all
+    vars_files: 
+      - "./file.yaml"
+
+    tasks:
+      - name: calling the file
+        copy:
+          dest: /home/ansadmin/a.txt
+          content: "{{my_content}}"  
+

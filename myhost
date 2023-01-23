@@ -1,0 +1,19 @@
+[appservers]
+S1 ansible_host=172.31.93.39
+S2 ansible_host=172.31.93.210     
+
+[database]
+D1 ansible_host=172.31.93.39     
+
+[webservers]
+W1 ansible_host=172.31.93.39     
+W2 ansible_host=172.31.93.210
+
+[appdbweb:children]
+appservers
+database
+webservers
+
+[appdbweb:vars]
+ansible_user=ansadmin
+ansible_connection=ssh

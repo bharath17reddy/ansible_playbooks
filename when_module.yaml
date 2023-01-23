@@ -1,0 +1,22 @@
+---
+  - name: check httpd installed or not
+    hosts: all
+    become: yes
+
+    tasks:
+      - name: check httpd
+        shell: |
+          rpm -qa | grep "httpd"
+        ignore_errors: True  
+        register: data
+
+      - name: printing httpd
+        debug:
+          var: data    
+
+      - name: cheking and installing
+        yum:
+          name: httpd
+          state: present
+        when: data.rc != 0
+               

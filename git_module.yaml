@@ -1,0 +1,12 @@
+---
+  - name: using the git module
+    hosts: all
+    vars:
+      token: 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
+      username: bharath17reddy
+      repo_name: hdfc_new
+    tasks:
+      - name: cloning the project from SCM
+        git:
+          repo: https://{{token}}@github.com/{{username}}/{{repo_name}}.git
+          dest: /home/ansadmin/bharath 

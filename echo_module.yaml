@@ -1,0 +1,24 @@
+---
+  - name: echo module
+    hosts: all
+    tasks:
+      - name: command module
+        command: echo "sankranthi"
+        register: data
+
+      - name: printing the register value
+        debug:
+          var: data 
+
+      - name: Printing the command
+        debug:
+          var: data.cmd
+
+
+      - name: Printing the command
+        debug:
+          var: data.delta        
+
+      - name: Printing the command
+        debug:
+          var: data.stdout       

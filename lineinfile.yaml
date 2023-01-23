@@ -1,0 +1,11 @@
+---
+  - name: lineinfile
+    hosts: all
+    become: yes
+    tasks:
+      - name: Lineinfile module
+        lineinfile:
+          path: /home/ansadmin/a.txt
+          regexp: 'the dest option has been changed to path as default'
+          line: 'the Source option has been changed to path as default'  
+  

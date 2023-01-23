@@ -1,0 +1,16 @@
+---
+  - name: Unzipping the files
+    hosts: all
+    become: yes
+
+    tasks:
+      - name: Unarchieve the data
+        unarchive:
+           src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz
+           dest: /tmp/
+           remote_src: yes
+
+      - name: command to rename
+        command: mv /tmp/apache-tomcat-9.0.70 /tmp/tomcat
+        register: data         
+
